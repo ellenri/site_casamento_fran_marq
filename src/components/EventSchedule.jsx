@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 // Usando imagens existentes no projeto
-import photo1 from '../assets/roupa_preta_violao_buque_para_cima.jpg';
+import photo1 from '../assets/casa_laranja_pri_roupa_preta.jpg';
 import photo2 from '../assets/roupa_preta_violao.jpg';
 import lirio from '../assets/lirio.png';
 import girasol from '../assets/girasol.png';
@@ -36,6 +36,7 @@ const ScheduleContainer = styled.div`
   overflow-x: hidden;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
+  scroll-margin-top: 70px; /* Ajuste para compensar a altura do navbar fixo */
   
   @media (min-width: 768px) {
     padding: 4rem 2rem;
@@ -64,7 +65,7 @@ const ScheduleContent = styled.div`
 
 const ScheduleTitle = styled.h2`
   font-family: 'Dancing Script', cursive;
-  color: #8B4513;
+   color: #c45824; /* Cor terracota */
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 1rem;
@@ -105,6 +106,42 @@ const EventItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  // border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+  // padding-bottom: 0.75rem;
+  // padding-top: 0.75rem;
+  // padding-left: 1.51rem;
+  
+  // &:last-child {
+  //   border-bottom: none;
+  //   padding-bottom: 0;
+  // }
+  
+  // &:first-child {
+  //   padding-top: 0;
+  // }
+`;
+
+const EventTime = styled.span`
+  font-family: 'Montserrat', sans-serif;
+  color: #8B4513;
+  font-weight: 600;
+  font-size: 1.5rem;
+  min-width: 80px;
+  text-align: right;
+  padding-right: 1.5rem;
+  
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+    min-width: 80px;
+  }
+`;
+const EventObservation = styled.span`
+  font-family: 'Montserrat', sans-serif;
+  color: #8B4513;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-align: left;
+  padding-left: 1.5rem;
   border-bottom: 1px solid rgba(139, 69, 19, 0.2);
   padding-bottom: 0.75rem;
   padding-top: 0.75rem;
@@ -118,16 +155,8 @@ const EventItem = styled.div`
   &:first-child {
     padding-top: 0;
   }
-`;
+ 
 
-const EventTime = styled.span`
-  font-family: 'Montserrat', sans-serif;
-  color: #8B4513;
-  font-weight: 600;
-  font-size: 1.1rem;
-  min-width: 80px;
-  text-align: right;
-  padding-right: 1.5rem;
   
   @media (min-width: 768px) {
     font-size: 1.2rem;
@@ -183,21 +212,25 @@ const PhotoDecoration = styled.div`
 `;
 
 const LeftPhoto = styled(PhotoDecoration)`
-  top: -25%;
-  left: -250px;
-  transform: rotate(-12deg);
+ bottom: -25%;
+  right: -250px; 
+  width: 450px;
+  height: 300px;  
+  transform: rotate(-10deg);
 `;
 
 const RightPhoto = styled(PhotoDecoration)`
-  bottom: -25%;
-  right: -250px;
-  transform: rotate(12deg);
+  top: -25%;
+  left: -350px;
+  width: 300px;
+  height: 450px; 
+  transform: rotate(8deg);
 `;
 
 const LirioDecoration = styled.div`
   position: absolute;
-  top: -210px;
-  left: -380px;
+  top: -250px;
+  left: -310px;
   width: 220px;
   height: 220px;
   z-index: 4;
@@ -219,12 +252,12 @@ const LirioDecoration = styled.div`
 
 const GirasolDecoration = styled.div`
   position: absolute;
-  bottom: -100px;
-  right: -80px;
+  bottom: -150px;
+  right: 100px;
   width: 200px;
   height: 200px;
   z-index: 4;
-  transform: rotate(-3deg);
+  transform: rotate(-9deg);
   
   img {
     width: 100%;
@@ -244,7 +277,7 @@ const EventSchedule = () => {
   return (
     <>
       <GlobalStyle />
-      <ScheduleContainer>
+      <ScheduleContainer id="programacao">
         <ScheduleContent>
           <LirioDecoration>
             <img src={lirio} alt="Flor de lírio" />
@@ -260,13 +293,14 @@ const EventSchedule = () => {
           <EventList>
             <EventItem>
               <EventTime>16:30</EventTime>
-              <EventDescription>Cerimônia</EventDescription>
+              <EventDescription>Cerimônia Religiosa</EventDescription>             
             </EventItem>
+            <EventObservation>Na Igreja do Santíssimo Redentor</EventObservation>
             
             <EventItem>
-              <EventTime>18:00</EventTime>
               <EventDescription>Recepção na Churrascaria Favo de Mel</EventDescription>
-            </EventItem>           
+            </EventItem>
+            <EventObservation>Após a cerimônia religiosa!</EventObservation>
             
           </EventList>
           

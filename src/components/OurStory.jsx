@@ -1,267 +1,180 @@
 import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-import backgroundImage from '../assets/por_do_sol.jpg';
+import styled from 'styled-components';
+import violaoImage from '../assets/violao_lirio_fundo_branco.png';
+import igrejaImage from '../assets/igreja_fundo_branco.png';
+import foto1Image from '../assets/nossa_historia_foto1_borda_branca.png';
+import foto2Image from '../assets/nossa_historia_foto2_borda_branca.png';
 
-// Criando um estilo global para resolver o problema de rolagem horizontal
-const GlobalStyle = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+const OurStory2Container = styled.div`
+  width: 100%;
+  background-color: #f9e7dc; /* Cor de fundo bege claro */
+  display: flex;
+  justify-content: center;
+  padding: 4rem 2rem;
+  scroll-margin-top: 70px; /* Ajuste para compensar a altura do navbar fixo */
   
-  html, body, #root {
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100%;
-    scroll-behavior: smooth;
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
   }
 `;
 
-// Styled components for the Our Story section
-const StoryContainer = styled.div`
+const ContentWrapper = styled.div`
+  display: flex;
+  max-width: 1200px;
   width: 100%;
-  min-height: 100vh;
-  background-image: url(${backgroundImage});
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const ImagesSection = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Alinhando à direita */
-  justify-content: center;
-  padding: 1rem 0.5rem;
   position: relative;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  margin: 0;
-  transition: all 0.3s ease;
   
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
-    z-index: 1;
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-  }
-  
-  /* Mobile - Small */
-  @media (min-width: 360px) and (max-width: 389px) {
-    padding: 0;
-    align-items: center; /* Centralizado em dispositivos pequenos */
-  }
-  
-  /* Mobile - Medium */
-  @media (min-width: 390px) and (max-width: 767px) {
-    padding: 0;
-    align-items: center; /* Centralizado em dispositivos pequenos */
-  }
-  
-  /* Tablet */
-  @media (min-width: 768px) and (max-width: 810px) {
-    flex-direction: row;
-    padding: 3rem 2rem;
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
     align-items: center;
-    justify-content: flex-end;
-  }
-  
-  /* Tablet - Large */
-  @media (min-width: 811px) and (max-width: 1365px) {
-    flex-direction: row;
-    padding: 3rem 3rem;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  
-  /* Desktop */
-  @media (min-width: 1366px) and (max-width: 1919px) {
-    flex-direction: row;
-    padding: 4rem 5rem;
-    max-width: 100%;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  
-  /* Desktop - Large */
-  @media (min-width: 1920px) {
-    flex-direction: row;
-    padding: 5rem 8rem;
-    max-width: 100%;
-    align-items: center;
-    justify-content: flex-end;
   }
 `;
 
-const StoryContent = styled.div`
-  margin-bottom: 2rem;
-  z-index: 2;
-  background-color: rgba(242, 223, 183, 0.7); /* cream color with opacity */
-  padding: 10rem;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  width: 100%;
-  transition: all 0.3s ease;
+const TextSection = styled.div`
+  flex: 1;
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   
-  /* Mobile - Small */
-  @media (min-width: 360px) and (max-width: 389px) {
-    max-width: 95%;
-    padding: 1.25rem;
-    margin: 0 auto; /* Centralizado em dispositivos pequenos */
-    align-self: center;
-  }
-  
-  /* Mobile - Medium */
-  @media (min-width: 390px) and (max-width: 767px) {
-    max-width: 95%;
-    padding: 1.5rem;
-    margin: 0 auto; /* Centralizado em dispositivos pequenos */
-    align-self: center;
-  }
-  
-  /* Tablet */
-  @media (min-width: 768px) and (max-width: 810px) {
-    margin-right: 2rem;
-    margin-bottom: 0;
-    max-width: 50%;
-    padding: 1.75rem; 
-    border-right: none;
-  }
-  
-  /* Tablet - Large to Desktop */
-  @media (min-width: 811px) and (max-width: 1365px) {
-    margin-right: 3rem;
-    margin-bottom: 0;
-    max-width: 45%;
-    padding: 2rem;
-    border-right: none;
-  }
-  
-  /* Desktop */
-  @media (min-width: 1366px) and (max-width: 1919px) {
-    margin-right: 5rem;
-    margin-bottom: 0;
-    max-width: 40%;
-    padding: 2rem;
-    border-right: none;
-  }
-  
-  /* Desktop - Large */
-  @media (min-width: 1920px) {
-    margin-right: 8rem;
-    max-width: 500px;
-    padding: 2.5rem;   
-    border-right: none;
+  @media (max-width: 768px) {
+    padding-left: 0;
+    text-align: center;
   }
 `;
 
-const StoryTitle = styled.h2`
+const Title = styled.h2`
   font-family: 'Dancing Script', cursive;
-  color: #c45824; /* terracota-primary from the color palette */
+  font-size: 3.5rem;
+  color: #c45824; /* Cor terracota */
   margin-bottom: 1.5rem;
-  text-align: center;
   
-  /* Mobile - Small */
-  @media (min-width: 360px) and (max-width: 389px) {
-    font-size: 2.2rem;
-    margin-bottom: 1.2rem;
-  }
-  
-  /* Mobile - Medium */
-  @media (min-width: 390px) and (max-width: 767px) {
+  @media (max-width: 768px) {
     font-size: 2.5rem;
-  }
-  
-  /* Tablet */
-  @media (min-width: 768px) and (max-width: 1365px) {
-    font-size: 2.8rem;
-    text-align: center; 
-  }
-  
-  /* Desktop */
-  @media (min-width: 1366px) and (max-width: 1919px) {
-    font-size: 3rem;
-    text-align: center; 
-  }
-  
-  /* Desktop - Large */
-  @media (min-width: 1920px) {
-    font-size: 3.5rem;
-    text-align: center; 
+    margin-bottom: 1rem;
   }
 `;
 
 const StoryText = styled.p`
   font-family: 'Montserrat', sans-serif;
-  color:rgb(14, 5, 1); /* darker shade of terracota for better readability */
+  font-size: 1.2rem;
   line-height: 1.8;
-  margin-bottom: 1.2rem;
+  color: #5c4b51; /* Cor marrom escuro */
   text-align: justify;
-  font-weight: 600; /* Aumentando a espessura da letra */
+   font-weight: 500;
   
-  &:last-child {
-    margin-bottom: 0;
-  }
-  
-  /* Mobile - Small */
-  @media (min-width: 360px) and (max-width: 389px) {
+  @media (max-width: 768px) {
+    text-align: center;
     font-size: 0.9rem;
-    line-height: 1.6;
-    text-align: justify; /* Texto justificado em dispositivos pequenos */
-  }
-  
-  /* Mobile - Medium */
-  @media (min-width: 390px) and (max-width: 767px) {
-    font-size: 0.95rem;
-    text-align: justify; /* Texto justificado em dispositivos pequenos */
-  }
-  
-  /* Tablet */
-  @media (min-width: 768px) and (max-width: 1365px) {
-    font-size: 1rem;
-  }
-  
-  /* Desktop */
-  @media (min-width: 1366px) and (max-width: 1919px) {
-    font-size: 1.1rem;
-  }
-  
-  /* Desktop - Large */
-  @media (min-width: 1920px) {
-    font-size: 1.2rem;
   }
 `;
 
-const OurStory = () => {
+const PhotoContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Photo1 = styled.img`
+  width: 70%;
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  margin-bottom: -50px;
+  margin-right: 300px;
+  
+  @media (max-width: 768px) {
+    width: 80%;
+    margin-bottom: -30px;
+  }
+`;
+
+const Photo2 = styled.img`
+  width: 80%;
+  max-width: 350px;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  margin-left: 50px;
+  
+  @media (max-width: 768px) {
+    width: 90%;
+    margin-left: 30px;
+  }
+`;
+
+const ViolaoImage = styled.img`
+  position: absolute;
+  width: 250px;
+  height: auto;
+  top: 35%;
+  right: 10%;
+  transform: translateY(-50%);
+  z-index: 3;
+  
+  @media (max-width: 768px) {
+    width: 80px;
+    top: 40%;
+    right: 5%;
+  }
+`;
+
+const IgrejaImage = styled.img`
+  position: absolute;
+  width: 220px;
+  height: auto;
+  bottom: -3%;
+  left: 0;
+  z-index: 3;
+  
+  @media (max-width: 768px) {
+    width: 100px;
+    bottom: 10%;
+    left: 5%;
+  }
+`;
+
+const OurStory2 = () => {
   return (
-    <>
-      <GlobalStyle />
-      <StoryContainer>
-        <StoryContent>
-          <StoryTitle>Nossa História</StoryTitle>
+    <OurStory2Container id="nossa-historia">
+      <ContentWrapper>
+        <ImagesSection>
+          <PhotoContainer>
+            <Photo1 src={foto1Image} alt="Nossa História 1" />
+            <Photo2 src={foto2Image} alt="Nossa História 2" />
+            <ViolaoImage src={violaoImage} alt="Violão" />
+            <IgrejaImage src={igrejaImage} alt="Igreja" />
+          </PhotoContainer>
+        </ImagesSection>
+        <TextSection>
+          <Title>Nossa História</Title>
           <StoryText>
-          No coração da igreja, onde a música e a fé nos uniam a Deus, nossos caminhos se entrelaçaram. Entre acordes, ensaios e louvores, nossos olhares se encontraram, e cada melodia ganhava um novo sentido.
+            No coração da igreja, onde a música e a fé nos uniam a Deus, nossos caminhos se entrelaçaram. 
+            Entre acordes, ensaios e louvores, nossos olhares se encontraram, e cada melodia ganhava um novo sentido. 
+            Descobrimos uma sintonia que transcendia as notas, partilhando valores, sonhos e a certeza de que Deus 
+            nos havia presenteado um ao outro. Nossa história, uma canção que se compõe a cada dia, floresceu ali, 
+            onde a fé nos fortalece e o amor nos completa.
           </StoryText>
-          <StoryText>
-          Descobrimos uma sintonia que transcendia as notas, partilhando valores, sonhos e a certeza de que Deus nos havia presenteado um ao outro. Nossa história, uma canção que se compõe a cada dia, floresceu ali, onde a fé nos fortalece e o amor nos completa.
-          </StoryText>
-        </StoryContent>
-      </StoryContainer>
-    </>
+        </TextSection>
+      </ContentWrapper>
+    </OurStory2Container>
   );
 };
 
-export default OurStory;
+export default OurStory2;

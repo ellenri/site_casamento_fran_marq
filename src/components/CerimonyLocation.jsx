@@ -37,7 +37,7 @@ const CerimonyContent = styled.div`
 
 const CerimonyTitle = styled.h2`
 font-family: 'Dancing Script', cursive;
-  color: #8B4513;
+    color: #c45824; /* Cor terracota */
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 1rem;
@@ -139,52 +139,13 @@ const MapContainer = styled.div`
   }
 `;
 
-const DirectionsContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1rem;
-  
-  p {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 1rem;
-  }
-`;
 
-const DirectionsInput = styled.input`
-  width: 100%;
-  max-width: 400px;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-family: 'Montserrat', sans-serif;
-  margin-bottom: 1rem;
-`;
-
-const DirectionsButton = styled.button`
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  
-  &:hover {
-    background-color: #555;
-  }
-`;
 
 const CerimonyLocation = () => {
   return (
     <>
       <GlobalStyle />
-      <CerimonyContainer>
+      <CerimonyContainer id="local">
         <CerimonyContent>
           <CerimonyTitle>Cerimônia Religiosa</CerimonyTitle>
           <CerimonyText>
@@ -204,8 +165,9 @@ const CerimonyLocation = () => {
             <LocationInfo>
               <LocationTitle>Igreja do Santíssimo Redentor</LocationTitle>
               <LocationDetails>
-                26 de julho de 2025 às 16:00<br />
-                A Igreja unida será abençoada para sempre diante dos olhos de Deus. E para nós, é uma honra ter pessoas tão queridas vivenciando esse momento ao nosso lado.
+                26 de julho de 2025 às 16:30<br />
+                A Igreja unida será abençoada para sempre diante dos olhos de Deus.<br /> 
+                E para nós, é uma honra ter pessoas tão queridas vivenciando esse momento ao nosso lado.
               </LocationDetails>
               
               <MapContainer>
@@ -218,11 +180,6 @@ const CerimonyLocation = () => {
                 ></iframe>
               </MapContainer>
               
-              <DirectionsContainer>
-                <p>Digite aqui o endereço de origem para traçar uma rota</p>
-                <DirectionsInput type="text" placeholder="Local de partida" />
-                <DirectionsButton>TRAÇAR ROTA</DirectionsButton>
-              </DirectionsContainer>
             </LocationInfo>
           </LocationSection>
         </CerimonyContent>

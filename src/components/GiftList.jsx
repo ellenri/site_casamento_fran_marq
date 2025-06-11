@@ -142,7 +142,6 @@ const ColorSuggestionContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1rem 0 2rem;
-  background-color: rgb(233, 193, 164);
   padding: 2rem;
   width: 100%;
   

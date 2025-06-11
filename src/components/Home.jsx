@@ -4,7 +4,7 @@ import backgroundImage from '../assets/por_do_sol.jpg';
 import logoImage from '../assets/LOGO FUNDO BRANCO.png';
 
 // Navbar components
-const NavbarContainer = styled.div`
+const NavbarContainer = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
@@ -14,11 +14,16 @@ const NavbarContainer = styled.div`
   align-items: center;
   padding: 1rem 2rem;
   z-index: 1000;
-  background-color: transparent;
+  background-color: ${props => props.scrolled ? 'rgba(0, 0, 0, 0.7)' : 'rgba(0, 0, 0, 0.3)'};
+  backdrop-filter: blur(5px);
   transition: background-color 0.3s ease;
+  box-shadow: ${props => props.scrolled ? '0 2px 10px rgba(0, 0, 0, 0.3)' : 'none'};
   
   @media (max-width: 768px) {
     padding: 1rem;
+    background-color: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
   }
 `;
 
@@ -43,7 +48,8 @@ const LogoImage = styled.img`
 `;
 
 const NavLinks = styled.div`
-  display: none;
+  display: flex;
+  gap: 2.5rem;
   
   @media (max-width: 768px) {
     display: none;

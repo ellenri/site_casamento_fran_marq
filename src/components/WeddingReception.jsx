@@ -272,7 +272,7 @@ const WeddingReception = () => {
               </QRCodeContainer>           
            
               <SectionText style={{ marginTop: '15px', fontStyle: 'italic', fontSize: '0.95rem' }}>
-                Enviar comprovante, juntamente com o nome completo das pessoas da referida contribuição.
+                Enviar comprovante até dia <strong>12/07/2025</strong>, juntamente com o nome completo das pessoas da referida contribuição.
               </SectionText>
               <WhatsappButton onClick={() => setShowForm(!showForm)} title="Preencher formulário de confirmação">
                 <WhatsappText>Enviar comprovante</WhatsappText>

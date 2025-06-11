@@ -477,7 +477,7 @@ const ButtonsContainer = styled.div`
     gap: 15px;
     justify-content: center;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 5px;
   }
 `;
 
@@ -508,9 +508,9 @@ const ButtonBase = styled.a`
   }
   
   @media (max-width: 768px) {
-    padding: 10px 20px;
+    padding: 10px 4px;
     font-size: 0.9rem;
-    width: 160px;
+    width: 210px;
     height: 45px;
   }
 `;

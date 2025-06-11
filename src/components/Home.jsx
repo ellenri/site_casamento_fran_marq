@@ -14,10 +14,8 @@ const NavbarContainer = styled.div`
   align-items: center;
   padding: 1rem 2rem;
   z-index: 1000;
-  background-color: ${props => props.scrolled ? 'rgba(0, 0, 0, 0.7)' : 'rgba(0, 0, 0, 0.3)'};
-  backdrop-filter: blur(5px);
+  background-color: transparent;
   transition: background-color 0.3s ease;
-  box-shadow: ${props => props.scrolled ? '0 2px 10px rgba(0, 0, 0, 0.3)' : 'none'};
   
   @media (max-width: 768px) {
     padding: 1rem;
@@ -45,8 +43,7 @@ const LogoImage = styled.img`
 `;
 
 const NavLinks = styled.div`
-  display: flex;
-  gap: 2.5rem;
+  display: none;
   
   @media (max-width: 768px) {
     display: none;
@@ -162,6 +159,33 @@ const MobileNavLink = styled.a`
   position: relative;
   padding: 0.5rem 0;
   transition: all 0.3s ease;
+  transform: ${props => props.isOpen ? 'translateY(0)' : 'translateY(-30px)'};
+  opacity: ${props => props.isOpen ? '1' : '0'};
+  animation: ${props => props.isOpen ? 'slideInDown' : 'slideOutUp'} 0.6s ease-out;
+  animation-delay: ${props => props.delay || '0s'};
+  animation-fill-mode: both;
+  
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideOutUp {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+  }
   
   &:hover {
     color: #ffcba4;
@@ -197,6 +221,33 @@ const CloseButton = styled.div`
   justify-content: center;
   border-radius: 50%;
   transition: all 0.3s ease;
+  transform: ${props => props.isOpen ? 'scale(1)' : 'scale(0)'};
+  opacity: ${props => props.isOpen ? '1' : '0'};
+  animation: ${props => props.isOpen ? 'scaleIn' : 'scaleOut'} 0.4s ease-out;
+  animation-delay: ${props => props.isOpen ? '0.3s' : '0s'};
+  animation-fill-mode: both;
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes scaleOut {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0);
+    }
+  }
   
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
@@ -270,6 +321,7 @@ const ContentContainer = styled.div`
     align-items: center;
     text-align: center;
     justify-content: flex-start;
+    height: 90%;
   }
 `;
 
@@ -431,13 +483,14 @@ const Home2 = () => {
       </NavbarContainer>
       
       <MobileMenu isOpen={mobileMenuOpen}>
-        <MobileNavLink href="#home" onClick={toggleMobileMenu}>Home</MobileNavLink>
-        <MobileNavLink href="#nossa-historia" onClick={toggleMobileMenu}>Nossa História</MobileNavLink>
-        <MobileNavLink href="#galeria" onClick={toggleMobileMenu}>Galeria</MobileNavLink>
-        <MobileNavLink href="#programacao" onClick={toggleMobileMenu}>Programação</MobileNavLink>
-        <MobileNavLink href="#local" onClick={toggleMobileMenu}>Cerimônia</MobileNavLink>
-        <MobileNavLink href="#recepcao" onClick={toggleMobileMenu}>Recepção</MobileNavLink>
-        <MobileNavLink href="#presentes" onClick={toggleMobileMenu}>Presentes</MobileNavLink>
+        <CloseButton isOpen={mobileMenuOpen} onClick={toggleMobileMenu} />
+        <MobileNavLink href="#home" onClick={toggleMobileMenu} isOpen={mobileMenuOpen} delay="0s">Home</MobileNavLink>
+        <MobileNavLink href="#nossa-historia" onClick={toggleMobileMenu} isOpen={mobileMenuOpen} delay="0.1s">Nossa História</MobileNavLink>
+        <MobileNavLink href="#galeria" onClick={toggleMobileMenu} isOpen={mobileMenuOpen} delay="0.2s">Galeria</MobileNavLink>
+        <MobileNavLink href="#programacao" onClick={toggleMobileMenu} isOpen={mobileMenuOpen} delay="0.3s">Programação</MobileNavLink>
+        <MobileNavLink href="#local" onClick={toggleMobileMenu} isOpen={mobileMenuOpen} delay="0.4s">Cerimônia</MobileNavLink>
+        <MobileNavLink href="#recepcao" onClick={toggleMobileMenu} isOpen={mobileMenuOpen} delay="0.5s">Recepção</MobileNavLink>
+        <MobileNavLink href="#presentes" onClick={toggleMobileMenu} isOpen={mobileMenuOpen} delay="0.6s">Presentes</MobileNavLink>
       </MobileMenu>
       
       <Home2Container id="home">

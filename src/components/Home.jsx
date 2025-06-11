@@ -140,7 +140,7 @@ const MobileMenu = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2.5rem;
+  gap: 0.5rem;
   transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 999;
   opacity: ${props => props.isOpen ? '1' : '0'};

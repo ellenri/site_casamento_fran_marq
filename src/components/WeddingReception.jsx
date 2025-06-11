@@ -284,7 +284,11 @@ const WeddingReception = () => {
                   <FormContainer>
                     <FormTitle>Confirmação de Presença</FormTitle>
                     <FormSubtitle>Dados dos contribuintes:</FormSubtitle>
-                    <FormClose onClick={() => setShowForm(false)}>&times;</FormClose>
+                    <FormClose onClick={() => setShowForm(false)}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </FormClose>
                     
                     <form onSubmit={addAttendee}>
                       <FormGroup>
@@ -301,28 +305,19 @@ const WeddingReception = () => {
                       <FormRow>
                         <FormGroup style={{ flex: 1 }}>
                           <FormLabel>É criança?</FormLabel>
-                          <FormCheckbox>
-                            <input
-                              type="checkbox"
-                              name="isChild"
-                              checked={formData.isChild}
-                              onChange={handleInputChange}
-                            />
-                            <span>Sim</span>
-                          </FormCheckbox>
+                          <CustomCheckbox
+                            checked={formData.isChild}
+                            onChange={(checked) => handleInputChange({ target: { name: 'isChild', type: 'checkbox', checked } })}
+                            label="Sim"
+                          />
                         </FormGroup>
                         
                         {formData.isChild && (
                           <FormGroup style={{ flex: 1 }}>
                             <FormLabel>Idade:</FormLabel>
-                            <FormInput
-                              type="number"
-                              name="childAge"
-                              min="0"
-                              max="12"
+                            <AgeSelector
                               value={formData.childAge}
-                              onChange={handleInputChange}
-                              required={formData.isChild}
+                              onChange={(value) => handleInputChange({ target: { name: 'childAge', value } })}
                             />
                           </FormGroup>
                         )}
@@ -364,6 +359,50 @@ const WeddingReception = () => {
         </ContentWrapper>
       </WeddingReceptionContainer>
     </>
+  );
+};
+
+// Age Selector Component
+const AgeSelector = ({ value, onChange }) => {
+  const handleDecrease = () => {
+    const newValue = Math.max(1, (parseInt(value) || 1) - 1);
+    onChange(newValue);
+  };
+
+  const handleIncrease = () => {
+    const newValue = Math.min(18, (parseInt(value) || 1) + 1);
+    onChange(newValue);
+  };
+
+  return (
+    <AgeSelectorContainer>
+      <AgeButton onClick={handleDecrease} disabled={parseInt(value) <= 1}>
+        −
+      </AgeButton>
+      <AgeDisplay>{value || 1}</AgeDisplay>
+      <AgeButton onClick={handleIncrease} disabled={parseInt(value) >= 18}>
+        +
+      </AgeButton>
+    </AgeSelectorContainer>
+  );
+};
+
+// Custom Checkbox Component
+const CustomCheckbox = ({ checked, onChange, label }) => {
+  const handleClick = () => {
+    onChange(!checked);
+  };
+
+  return (
+    <CheckboxContainer onClick={handleClick}>
+      <CheckboxWrapper>
+        <HiddenCheckbox checked={checked} readOnly />
+        <StyledCheckbox checked={checked}>
+          <CheckboxIcon checked={checked}>✓</CheckboxIcon>
+        </StyledCheckbox>
+      </CheckboxWrapper>
+      <CheckboxLabel>{label}</CheckboxLabel>
+    </CheckboxContainer>
   );
 };
 
@@ -473,8 +512,6 @@ const FormContainer = styled.div`
   padding: 30px;
   width: 100%;
   max-width: 500px;
-  max-height: 90vh;
-  overflow-y: auto;
   position: relative;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
 `;
@@ -482,8 +519,8 @@ const FormContainer = styled.div`
 const FormTitle = styled.h3`
   font-family: 'Montserrat', sans-serif;
   color: #5c4b51;
-  margin-top: 12px;
-  margin-bottom: 10px;
+  margin-top: 32px;
+  margin-bottom: 24px;
   text-align: center;
   font-size: 1.4rem;
   line-height: 1.2;
@@ -521,10 +558,6 @@ const FormGroup = styled.div`
 const FormRow = styled.div`
   display: flex;
   gap: 15px;
-  
-  @media (max-width: 480px) {
-    flex-direction: column;
-  }
 `;
 
 const FormLabel = styled.label`
@@ -543,6 +576,8 @@ const FormInput = styled.input`
   border-radius: 4px;
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
+  background-color: #f5f5f5;
+  color: #000;
   
   &:focus {
     outline: none;
@@ -560,6 +595,111 @@ const FormCheckbox = styled.label`
   input {
     cursor: pointer;
   }
+`;
+
+const AgeSelectorContainer = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 120px;
+`;
+
+const AgeButton = styled.button`
+  background-color: #c45824;
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  
+  &:hover:not(:disabled) {
+    background-color: #483c40;
+  }
+  
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
+const AgeDisplay = styled.div`
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000;
+  background-color: #f5f5f5;
+`;
+
+const CheckboxContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 8px 0;
+`;
+
+const CheckboxWrapper = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+`;
+
+const StyledCheckbox = styled.div`
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background-color: ${props => props.checked ? '#c45824' : '#f5f5f5'};
+  border: 2px solid ${props => props.checked ? '#c45824' : '#ddd'};
+  border-radius: 6px;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    border-color: #c45824;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(196, 88, 36, 0.3);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+`;
+
+const CheckboxIcon = styled.span`
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  opacity: ${props => props.checked ? 1 : 0};
+  transform: ${props => props.checked ? 'scale(1) rotate(0deg)' : 'scale(0.3) rotate(45deg)'};
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+`;
+
+const CheckboxLabel = styled.span`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  user-select: none;
+  cursor: pointer;
 `;
 
 const FormButton = styled.button`

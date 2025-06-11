@@ -44,10 +44,8 @@ const WeddingReceptionContainer = styled.div`
 
 const ContentWrapper = styled.div`
   z-index: 2;
-  background-color: rgba(242, 223, 183, 0.5); /* Cor similar à usada no componente StoryContent */
   padding: 2.5rem;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 800px;
   position: relative;

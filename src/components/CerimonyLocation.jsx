@@ -68,13 +68,12 @@ const LocationSection = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color:rgb(233, 193, 164);
   padding: 2rem;
   margin-top: 5rem;
   
   @media (min-width: 768px) {
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
   }
 `;
 
@@ -82,16 +81,18 @@ const LocationImage = styled.div`
   width: 100%;
   height: 300px;
   overflow: hidden;
+  border-radius: 8px;
   
   @media (min-width: 768px) {
     width: 40%;
-    height: auto;
+    height: 400px;
   }
   
   img {
     width: 100%;
-    height: 90%;
+    height: 100%;
     object-fit: cover;
+    border-radius: 8px;
   }
 `;
 
@@ -100,12 +101,13 @@ const LocationInfo = styled.div`
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   
   @media (min-width: 768px) {
     width: 60%;
-    padding: 2rem;
+    padding: 2rem 3rem;
     text-align: left;
+    height: 400px;
   }
 `;
 

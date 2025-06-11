@@ -216,7 +216,7 @@ const CloseButton = styled.div`
   width: 40px;
   height: 40px;
   cursor: pointer;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
@@ -387,7 +387,8 @@ const WeddingDate = styled.p`
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
   
   @media (max-width: 768px) {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+    margin: 0;
   }
 `;
 
@@ -561,10 +562,10 @@ const ButtonBase = styled.a`
   }
   
   @media (max-width: 768px) {
-    padding: 10px 4px;
-    font-size: 0.9rem;
+    padding: 7px 4px;
+    font-size: 0.8rem;
     width: 210px;
-    height: 45px;
+    height: 36px;
   }
 `;
 

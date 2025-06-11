@@ -376,11 +376,11 @@ const AgeSelector = ({ value, onChange }) => {
 
   return (
     <AgeSelectorContainer>
-      <AgeButton onClick={handleDecrease} disabled={parseInt(value) <= 1}>
+      <AgeButton type="button" onClick={handleDecrease} disabled={parseInt(value) <= 1}>
         −
       </AgeButton>
       <AgeDisplay>{value || 1}</AgeDisplay>
-      <AgeButton onClick={handleIncrease} disabled={parseInt(value) >= 18}>
+      <AgeButton type="button" onClick={handleIncrease} disabled={parseInt(value) >= 18}>
         +
       </AgeButton>
     </AgeSelectorContainer>

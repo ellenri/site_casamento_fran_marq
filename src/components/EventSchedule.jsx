@@ -214,7 +214,7 @@ const PhotoDecoration = styled.div`
 
 const LeftPhoto = styled(PhotoDecoration)`
  bottom: -25%;
-  right: -250px; 
+  right: -290px; 
   width: 450px;
   height: 300px;  
   transform: rotate(-10deg);
@@ -253,7 +253,7 @@ const LirioDecoration = styled.div`
 const GirasolDecoration = styled.div`
   position: absolute;
   bottom: -150px;
-  right: 100px;
+  right: 78px;
   width: 200px;
   height: 200px;
   z-index: 4;
@@ -298,7 +298,7 @@ const EventSchedule = () => {
             <EventObservation>Na Igreja do Santíssimo Redentor</EventObservation>
             
             <EventItem>
-              <EventDescription>Recepção na Churrascaria Favo de Mel</EventDescription>
+              <EventDescription>Recepção na Churrascaria Favo de Mel em Goiânia</EventDescription>
             </EventItem>
             <EventObservation>Após a cerimônia religiosa!</EventObservation>
             

@@ -233,7 +233,7 @@ const WeddingReception = () => {
             <InfoSection>
               <SectionTitle>Queridos amigos e familiares,</SectionTitle>
               <SectionText>
-                Após a cerimônia iremos comemorar na <strong>Churrascaria Favo de Mel</strong>.
+                Após a cerimônia iremos comemorar na <strong>Churrascaria Favo de Mel</strong> em Goiânia.
                 Para tornar essa celebração ainda mais especial, optamos por uma recepção por adesão parcial.
               </SectionText>
               

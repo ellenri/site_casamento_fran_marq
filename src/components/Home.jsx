@@ -9,7 +9,7 @@ const NavbarContainer = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
-  display: flex;
+  display: ${props => props.activeSection === 'home' ? 'flex' : 'none'};
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
@@ -24,6 +24,7 @@ const NavbarContainer = styled.nav`
     background-color: transparent;
     backdrop-filter: none;
     box-shadow: none;
+    display: flex; /* Always display on mobile regardless of section */
   }
 `;
 
@@ -469,8 +470,11 @@ const Home2 = () => {
   
   return (
     <>
-      <NavbarContainer scrolled={scrolled}>
-        <Logo>
+      <NavbarContainer scrolled={scrolled} activeSection={activeSection}>
+        <Logo onClick={() => {
+          window.location.href = '#home';
+          setActiveSection('home');
+        }}>
           <LogoImage src={logoImage} alt="F&M" />
         </Logo>
         <NavLinks>

@@ -129,9 +129,9 @@ const ViolaoImage = styled.img`
   z-index: 3;
   
   @media (max-width: 768px) {
-    width: 80px;
-    top: 40%;
-    right: 5%;
+    width: 400px;
+    top: 30%;
+    right: -27%;
   }
 `;
 
@@ -144,8 +144,8 @@ const IgrejaImage = styled.img`
   z-index: 3;
   
   @media (max-width: 768px) {
-    width: 100px;
-    bottom: 10%;
+    width: 122px;
+    bottom: 11%;
     left: 5%;
   }
 `;

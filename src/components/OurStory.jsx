@@ -101,6 +101,7 @@ const Photo1 = styled.img`
   @media (max-width: 768px) {
     width: 80%;
     margin-bottom: -30px;
+    margin-right: 150px;
   }
 `;
 
@@ -115,7 +116,7 @@ const Photo2 = styled.img`
   
   @media (max-width: 768px) {
     width: 90%;
-    margin-left: 30px;
+    margin-left: 50px;
   }
 `;
 
@@ -129,9 +130,9 @@ const ViolaoImage = styled.img`
   z-index: 3;
   
   @media (max-width: 768px) {
-    width: 400px;
-    top: 30%;
-    right: -27%;
+    width: 230px;
+    top: 37%;
+    right: -10%;
   }
 `;
 
@@ -145,8 +146,8 @@ const IgrejaImage = styled.img`
   
   @media (max-width: 768px) {
     width: 122px;
-    bottom: 11%;
-    left: 5%;
+    bottom: 0%;
+    left: 0%;
   }
 `;
 

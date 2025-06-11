@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import whatsappIcon from '../assets/whatsapp.png';
 import qrCodeImg from '../assets/qr code conta.png';
@@ -15,6 +15,18 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     max-width: 100%;
     scroll-behavior: smooth;
+  }
+  
+  /* Class to disable scroll when popup is open */
+  body.no-scroll {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  html.no-scroll {
+    overflow: hidden !important;
   }
 `;
 
@@ -44,7 +56,7 @@ const WeddingReceptionContainer = styled.div`
 
 const ContentWrapper = styled.div`
   z-index: 2;
-  padding: 2.5rem;
+  padding: 0rem;
   border-radius: 10px;
   width: 100%;
   max-width: 800px;
@@ -60,7 +72,7 @@ const ReceptionTitle = styled.h2`
   font-family: 'Dancing Script', cursive;
   color: #c45824; /* Cor terracota */
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 3.5rem;
   margin-bottom: 1.5rem;
   
   @media (min-width: 768px) {
@@ -135,6 +147,29 @@ const WeddingReception = () => {
     childAge: ''
   });
   const [attendees, setAttendees] = useState([]);
+
+  // Effect to handle body scroll when form is open/closed
+  useEffect(() => {
+    if (showForm) {
+      // Store original overflow values
+      const originalHtmlOverflow = document.documentElement.style.overflow;
+      const originalBodyOverflow = document.body.style.overflow;
+      
+      // Disable scroll on both html and body
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      
+      // Cleanup function to restore original overflow when component unmounts or form closes
+      return () => {
+        document.documentElement.style.overflow = originalHtmlOverflow;
+        document.body.style.overflow = originalBodyOverflow || 'auto';
+      };
+    } else {
+      // Re-enable scroll
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+  }, [showForm]);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText('franemarq@gmail.com');
@@ -445,12 +480,13 @@ const FormContainer = styled.div`
 `;
 
 const FormTitle = styled.h3`
-  font-family: 'Playfair Display', serif;
+  font-family: 'Montserrat', sans-serif;
   color: #5c4b51;
-  margin-top: 0;
+  margin-top: 12px;
   margin-bottom: 10px;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
+  line-height: 1.2;
 `;
 
 const FormSubtitle = styled.p`
@@ -465,11 +501,11 @@ const FormSubtitle = styled.p`
 
 const FormClose = styled.button`
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: -30px;
+  right: -45px;
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 3rem;
   cursor: pointer;
   color: #c45824;
   
@@ -536,7 +572,7 @@ const FormButton = styled.button`
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   transition: background-color 0.3s ease;
-  width: 50%;
+  width: 90%;
   margin-top: 10px;
   margin-left: auto;
   margin-right: auto;

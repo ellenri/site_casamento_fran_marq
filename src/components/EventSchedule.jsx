@@ -69,6 +69,7 @@ const ScheduleTitle = styled.h2`
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  line-height: 1.1;
   
   @media (min-width: 768px) {
     font-size: 3.5rem;
@@ -243,10 +244,9 @@ const LirioDecoration = styled.div`
   }
   
   @media (max-width: 768px) {
-    width: 70px;
-    height: 70px;
-    top: 10px;
-    left: 10px;
+    height: 120px;
+    top: -10px;
+    left: -90px;
   }
 `;
 
@@ -266,10 +266,10 @@ const GirasolDecoration = styled.div`
   }
   
   @media (max-width: 768px) {
-    width: 80px;
-    height: 80px;
-    bottom: 10px;
-    right: 10px;
+    width: 70px;
+    bottom: -40px;
+    right: 0px;
+    transform: rotate(5deg);
   }
 `;
 

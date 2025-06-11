@@ -327,7 +327,7 @@ const ContentContainer = styled.div`
     align-items: center;
     text-align: center;
     justify-content: flex-start;
-    height: 90%;
+    height: 85%;
   }
 `;
 
